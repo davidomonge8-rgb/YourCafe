@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+
+.header{
+    margin: auto;
+    text-align: center;
+    display: flex;
+    padding: 10px;
+    max-width: 90%;
+    font-weight: bold;
+    font-size: 20px;
+    align-items: center;
+}
+
+.nav{
+    margin: auto;
+    display: flex;
+    margin-right: 0px;
+    align-items: center;
+}
+
+.nav ul{
+    margin: 0 10px;
+    display: flex;
+}
+
+.nav li{
+    margin: 0 10px;
+}
+
+.nav button{
+    cursor: pointer;
+    background-color: #F28B0C;
+    border-radius: 20px;
+    padding: 5px;
+    color: white;
+    box-shadow: 0px 2px 4px #F28B0C;
+}

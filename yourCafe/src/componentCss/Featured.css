@@ -1,0 +1,27 @@
+.Featured{
+    border: solid black 1px;
+    width: 90%;
+    margin: auto;
+}
+
+.Featured h2{
+    color: #F28B0C;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.Featured h1{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#Featured-nav{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.view-link{
+    position: absolute;
+    right: 10%;
+}

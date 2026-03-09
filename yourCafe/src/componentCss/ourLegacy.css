@@ -1,0 +1,55 @@
+.legacy{
+    height: 80vh;
+    display: flex;
+    width: 90%;
+    margin: auto;
+    margin-top: 40px;
+}
+
+
+.legacy-content{
+    margin-left: 0;
+    width: 49%;
+    justify-content: left;
+    padding: 20px 12px;
+}
+
+.legacy-content h2{
+    color: #F28B0C;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.legacy-content h1{
+    font-size: 3rem;
+}
+
+.legacy-content p {
+    font-size: 1.4rem;
+}
+
+.legacy-image{
+    width: 49%;
+    background-image:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(../assets/story.jpg) ;
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+
+}
+
+.legacy-image h1{
+    padding: 10px;
+    width: fit-content;
+    position: relative;
+    top: 88%;
+    right: 5%;
+    background-color: #F28B0C;
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    font-weight: 1000;
+    font-size: 1rem;
+    box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
