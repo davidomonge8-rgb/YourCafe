@@ -1,4 +1,5 @@
 import '../componentCss/Featured.css' 
+import Card from './Card.tsx'
 
 
 const Featured = () => {
@@ -9,7 +10,10 @@ const Featured = () => {
             <div id='Featured-nav'>
                 <h1>Featured Briews</h1>
                 <h2 className='view-link'><a href="">View all items</a></h2>
+                
             </div>
+
+            <Card/>
         </div>
     )
 }
