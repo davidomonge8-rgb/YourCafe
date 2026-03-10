@@ -1,6 +1,6 @@
 import '../componentCss/Hero.css'
 
-const Hero = () =>{
+function Hero(){
     return(
 
     <div id='hero'>

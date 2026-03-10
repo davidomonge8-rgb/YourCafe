@@ -22,7 +22,7 @@ const App = () => {
 
         <br />
 
-        <Test/>
+        
       </div>
 
       
