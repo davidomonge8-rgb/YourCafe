@@ -1,57 +1,71 @@
+import { useEffect, useState } from 'react'
+import { createClient } from '@supabase/supabase-js'
 import '../componentCss/Card.css'
 
-import latte from "../assets/latte.jpg"
-import icedCoffee from "../assets/icedCoffee.jpg"
-import matcha from "../assets/matcha.jpg"
+const supabase = createClient(
+  'https://hfolrfkuzobjgvdvwxag.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhmb2xyZmt1em9iamd2ZHZ3eGFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI5ODg2NzUsImV4cCI6MjA4ODU2NDY3NX0.nqFQ-kq7C8VSL2hP1A3-PGSjbkXz2L8h1Tk3bnEUmTA'
+)
 
-const Card = () =>{
-    return(
-        <div className='wholeCard'>
-                <div id="latte">
-                    <img src={latte} alt="latte" />
+type MenuItem = {
+  id: string
+  name: string
+  price: number
+  description: string
+  image_path: string
+}
 
-                    <div id='description'>
-                        <h3>Latte:</h3>
-                        <p>$4.50</p>
-                    </div>
+const Card = () => {
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-                    <p><i>Hot, Vanilla, Sweet </i></p>
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      const { data, error } = await supabase
+        .from('menu_items')
+        .select('*')
+        .order('created_at', { ascending: true })
 
-                    <button>Add to Order</button>
-                        
-                </div>
+      if (error) {
+        setError('Failed to load menu items.')
+        console.error(error)
+      } else {
+        setMenuItems(data || [])
+      }
 
-                <div id="icedCoffee">
-                    <img src={icedCoffee} alt="Iced Coffee" />
+      setLoading(false)
+    }
 
-                    <div id='description'>
-                        <h3>Iced Coffee:</h3>
-                        <p>$3.50</p>
-                    </div>
+    fetchMenuItems()
+  }, [])
 
-                    <p><i>Cold, Creamy ,Coffee</i></p>
+  const getImageUrl = (imagePath: string) => {
+    const { data } = supabase.storage.from('images').getPublicUrl(imagePath)
+    return data.publicUrl
+  }
 
-                    <button>Add to Order</button>
+  if (loading) return <p>Loading menu...</p>
+  if (error) return <p>{error}</p>
 
-                </div>
+  return (
+    <div className='wholeCard'>
+      {menuItems.map((item) => (
+        <div key={item.id} id={item.name.toLowerCase().replace(/\s+/g, '-')}>
+          <img src={getImageUrl(item.image_path)} alt={item.name} />
 
+          <div id='description'>
+            <h3>{item.name}:</h3>
+            <p>${item.price.toFixed(2)}</p>
+          </div>
 
-                <div id="matcha">
-                    <img src={matcha} alt="Matcha" />
+          <p><i>{item.description}</i></p>
 
-                    <div id='description'>
-                        <h3>Matcha:</h3>
-                        <p>$4.00</p>
-                    </div>
-
-                    <p><i>Warm, Earthy, Sweet</i></p>
-
-                    <button>Add to Order</button>
-                    
-                </div>
-
+          <button>Add to Order</button>
         </div>
-    )
+      ))}
+    </div>
+  )
 }
 
 export default Card
